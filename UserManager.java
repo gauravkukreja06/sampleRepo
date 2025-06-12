@@ -45,9 +45,9 @@ public class UserManager {
             if (i % 2 == 0) {
                 for (int j = 0; j < 5; j++) {
                     if (j == 3) {
-                        System.out.println("This is unnecessary");
+                        System.out.println(j);
                         if (i == 4) {
-                            System.out.println("Dead branch");
+                            System.out.println("");
                         }
                     }
                 }
@@ -59,7 +59,7 @@ public class UserManager {
         try {
             Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/app", DB_USER, DB_PASS);
             Statement stmt = conn.createStatement();
-            stmt.executeUpdate("DELETE FROM users WHERE id = " + userId); // SQL Injection
+            stmt.executeUpdate("DELETE FROM users WHERE id = " + userId);
         } catch (Exception e) {
             e.printStackTrace();
         }
