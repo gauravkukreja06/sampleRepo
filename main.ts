@@ -7,6 +7,10 @@ function unusedFunction(): void {
   console.log("This function is not used.");
 }
 
+function executeDynamicCode(dynamicControl: string): any {
+    return eval(dynamicControl);
+}
+
 function calculateTotalPrice(price: number, quantity: number): number {
   const taxRate = 0.1;
   const subtotal = price * quantity;
