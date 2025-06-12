@@ -11,18 +11,41 @@ function executeDynamicCode(dynamicControl: string): any {
     return eval(dynamicControl);
 }
 
-function calculateTotalPrice(price: number, quantity: number): number {
-  const taxRate = 0.1;
-  const subtotal = price * quantity;
-  const total = subtotal * (1 + taxRate);
-  return total;
+export function processOrder(order: any) {
+  if (!order) {
+    console.error("Invalid order");
+    return;
+  }
+
+  if (order.type === 'online') {
+    if (order.paid) {
+      if (order.stockAvailable) {
+        if (order.expedite) {
+          console.log("Expedite online order");
+        } else {
+          console.log("Process normal online order");
+        }
+      } else {
+        console.log("Stock unavailable for online order");
+      }
+    } else {
+      console.log("Online order not paid");
+    }
+  } else if (order.type === 'in-store') {
+    if (order.stockAvailable) {
+      console.log("Process in-store order");
+    } else {
+      console.log("Out of stock for in-store order");
+    }
+  } else {
+    console.log("Unknown order type");
+  }
 }
 
-function calculateOrderTotal(itemPrice: number, itemQuantity: number): number {
-  const taxRate = 0.1; // Duplicated tax rate
-  const subtotal = itemPrice * itemQuantity;
-  const total = subtotal * (1 + taxRate);
-  return total;
+export function test() {
+  const a = 10;
+  const b = 0;
+  return a/b;
 }
 
 async function getUserAndDisplay(userId: number): Promise<void> {
